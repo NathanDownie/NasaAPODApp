@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_APOD"
+        android:enabled="true"
+        android:title="@string/title_Apod"
+        android:backgroundTint="@color/icon_selector"
+        android:visible="true" />
+
+    <item
+        android:id="@+id/apodListFragment"
+        android:enabled="true"
+        android:title="@string/Previous_APOD"
+        android:backgroundTint="@color/icon_selector"
+        android:visible="true" />
+
+    <item
+        android:id="@+id/apodSearchFragment"
+        android:enabled="true"
+        android:backgroundTint="@color/icon_selector"
+        android:title="@string/Search_APOD"
+        android:visible="true" />
+
+</menu>

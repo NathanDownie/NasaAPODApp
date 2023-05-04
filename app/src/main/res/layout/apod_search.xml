@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="800dp"
+    android:layout_alignParentBottom="true"
+    app:layout_anchorGravity="bottom">
+
+
+
+    <DatePicker
+        android:id="@+id/dateEdit"
+        android:layout_width="272dp"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        android:defaultFocusHighlightEnabled="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.397" />
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/Search_APOD"
+        android:textColor="@color/icon_selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dateEdit"
+        app:layout_constraintVertical_bias="0.2"
+        app:rippleColor="@color/red" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

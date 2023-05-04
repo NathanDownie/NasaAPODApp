@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/reload_button"
+        android:checkable="false"
+        android:icon="@drawable/baseline_arrow_back_24"
+        android:title="@string/GoBackaPage"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/load_button"
+        android:icon="@drawable/baseline_arrow_forward_24"
+        android:title="@string/Last7Days"
+        app:showAsAction="ifRoom" />
+
+</menu>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_APOD">
+
+    <fragment
+        android:id="@+id/navigation_APOD"
+        android:name="com.example.test.apod.ui.ApodFragment"
+        android:label="@string/Astronomy_Picture_of_the_Day"
+        tools:layout="@layout/apod" >
+        <action
+            android:id="@+id/action_navigation_APOD_to_apodListFragment"
+            app:destination="@id/apodListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/apodListFragment"
+        android:name="com.example.test.apodlist.ui.ApodListFragment"
+        android:label="Last Ten Days"
+        tools:layout="@layout/apod_list" >
+
+        <action
+            android:id="@+id/action_apodListFragment_to_apodSearchFragment"
+            app:destination="@id/apodSearchFragment" />
+        <action
+            android:id="@+id/action_apodListFragment_to_navigation_APOD"
+            app:destination="@id/navigation_APOD" />
+    </fragment>
+    <fragment
+        android:id="@+id/apodSearchFragment"
+        android:name="com.example.test.apodsearch.ui.ApodSearchFragment"
+        android:label="Apod Search"
+        tools:layout="@layout/apod_search" >
+        <action
+            android:id="@+id/action_apodSearchFragment_to_apodListFragment"
+            app:destination="@id/apodListFragment" />
+        <action
+            android:id="@+id/action_apodSearchFragment_to_apodSearchResultFragment"
+            app:destination="@id/apodSearchResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/apodSearchResultFragment"
+        android:name="com.example.test.apodsearch.ui.ApodSearchResultFragment"
+        android:label="apod_search_result"
+        tools:layout="@layout/apod_search_result" >
+        <action
+            android:id="@+id/action_apodSearchResultFragment_to_apodSearchFragment"
+            app:destination="@id/apodSearchFragment" />
+    </fragment>
+
+</navigation>

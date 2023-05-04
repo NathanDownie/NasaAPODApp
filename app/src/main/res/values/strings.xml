@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="api_key">DEMO_KEY</string>
+    <string name="app_name">test</string>
+    <string name="title_Apod">APOD</string>
+    <string name="apod_image_content_description">NASA Astronomy Picture Of the Day</string>
+    <string name="apod_video_content_description" tools:ignore="UnusedResources">NASA Astronomy Picture OF the Day</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="Previous_APOD">Previous APOD</string>
+    <string name="Astronomy_Picture_of_the_Day">Astronomy Picture of the Day</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="Search_APOD">Search APOD</string>
+    <string name="Last7Days">Last 7 Days</string>
+    <string name="GoBackaPage">Go Back A Page</string>
+
+</resources>

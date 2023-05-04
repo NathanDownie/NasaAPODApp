@@ -1,0 +1,78 @@
+plugins {
+    id 'com.android.application' // specifies the type of Gradle plugin used for the project, in this case an Android application
+    id 'org.jetbrains.kotlin.android' // adds support for the Kotlin programming language to the Android plugin
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'com.example.test' // sets the package namespace for the app
+    compileSdk 33 // specifies the version of the Android SDK that the app is compiled against
+
+    defaultConfig {
+        applicationId "com.example.test" // specifies the unique identifier for the app
+        minSdk 29 // specifies the minimum version of Android that the app supports
+        targetSdk 33 // specifies the version of Android that the app is designed to run on
+        versionCode 1 // an integer value used to identify different versions of the app
+        versionName "1.0" // a string that represents the version name of the app
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner" // specifies the test runner used for the app
+    }
+
+    buildTypes {
+        release { // specifies the release build type
+            minifyEnabled false // indicates whether or not to run the code shrinking and obfuscation tools during the build
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro' // specifies the files used for code shrinking and obfuscation
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17 // specifies the version of the Java language that the code is compatible with
+        targetCompatibility JavaVersion.VERSION_17 // specifies the version of the Java language that the code is compiled for
+    }
+
+    kotlinOptions {
+        jvmTarget = '17' // specifies the version of the Java Virtual Machine that the code is compiled for when using Kotlin
+    }
+
+    buildFeatures {
+        viewBinding true
+        // enables view binding for the app, allowing for easier access to UI elements in code
+        dataBinding true
+    }
+}
+
+
+dependencies {
+
+    // Androidx Libraries
+    implementation 'androidx.appcompat:appcompat:1.6.1' // AppCompat library for AndroidX
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4' // ConstraintLayout library for AndroidX
+    implementation 'androidx.core:core-ktx:1.10.0' // Core library for AndroidX
+    implementation 'androidx.databinding:databinding-runtime:8.0.1' // DataBinding runtime library for AndroidX
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1' // LiveData library for AndroidX
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1' // ViewModel library for AndroidX
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3' // Navigation library for AndroidX Fragments
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3' // Navigation library for AndroidX UI
+    implementation 'androidx.recyclerview:recyclerview:1.3.0' // RecyclerView library for AndroidX
+    implementation 'androidx.viewpager:viewpager:1.0.0' // ViewPager library for AndroidX
+    implementation 'com.google.android.material:material:1.8.0' // Material Design Components library for AndroidX
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0' // Legacy support v4 library for AndroidX
+    implementation 'androidx.core:core-splashscreen:1.0.1'
+    // Third-party Libraries
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'androidx.core:core-ktx:1.10.0'// Image loading and caching library
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0' // Annotation processor for Glide
+    implementation "com.squareup.moshi:moshi:1.12.0" // Moshi library for JSON parsing
+    implementation "com.squareup.okhttp3:okhttp:4.9.3" // OkHttp library for HTTP requests
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0' // Gson converter for Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0' // A type-safe HTTP client for Android and Java
+    kapt 'androidx.databinding:databinding-compiler:8.0.1' // Annotation processor for DataBinding
+    kapt 'com.github.bumptech.glide:compiler:4.12.0' // Annotation processor for Glide
+
+    // Testing Libraries
+    testImplementation 'junit:junit:4.13.2' // JUnit testing framework
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5' // JUnit testing support library for AndroidX
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1' // UI testing framework for Android
+    implementation 'androidx.annotation:annotation:1.6.0' // Support library annotations for Android
+
+}
