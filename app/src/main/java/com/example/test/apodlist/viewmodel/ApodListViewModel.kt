@@ -37,7 +37,12 @@ class ApodListViewModel(application: Application) : AndroidViewModel(application
     private var endDate: String = startDate
     private var lastStartDate: String? = null
 
+    private val _isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
+
     fun loadApodListData() {
+        _isLoading.value = true
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 endDate = lastStartDate ?: endDate
@@ -49,6 +54,7 @@ class ApodListViewModel(application: Application) : AndroidViewModel(application
                         ignoredCall: Call<List<ApodData>>,
                         response: Response<List<ApodData>>
                     ) {
+                        _isLoading.value = false
                         if (response.isSuccessful) {
                             val apodList = response.body()?.reversed() ?: emptyList()
                             val newApodList = apodList
@@ -60,16 +66,18 @@ class ApodListViewModel(application: Application) : AndroidViewModel(application
                     }
 
                     override fun onFailure(ignoredCall: Call<List<ApodData>>, t: Throwable) {
+                        _isLoading.value = false
                         // Handle the error if the request fails
                     }
                 })
             } catch (_: Exception) {
-
+                _isLoading.value = false
             }
         }
     }
 
     fun loadLastApodListData() {
+        _isLoading.value = true
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 startDate = lastStartDate ?: endDate
@@ -81,6 +89,7 @@ class ApodListViewModel(application: Application) : AndroidViewModel(application
                         ignoredCall: Call<List<ApodData>>,
                         response: Response<List<ApodData>>
                     ) {
+                        _isLoading.value = false
                         if (response.isSuccessful) {
                             val apodList = response.body()?.reversed() ?: emptyList()
                             val newApodList = apodList
@@ -92,49 +101,38 @@ class ApodListViewModel(application: Application) : AndroidViewModel(application
                     }
 
                     override fun onFailure(ignoredCall: Call<List<ApodData>>, t: Throwable) {
+                        _isLoading.value = false
                         // Handle the error if the request fails
                     }
                 })
             } catch (_: Exception) {
-
+                _isLoading.value = false
             }
         }
     }
 
-
-
-
-    private fun getCurrentDate(): String {
-        val currentDate = Calendar.getInstance().time
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
-        return dateFormat.format(currentDate)
-    }
-
-    private fun Int.getPastDate(givenDate: String?): String {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val date = givenDate?.let { dateFormat.parse(it) }
-        val calendar = Calendar.getInstance()
-        if (date != null) {
-            calendar.time = date
-        }
-        calendar.add(Calendar.DATE, -this)
-        return dateFormat.format(calendar.time)
-    }
-
-    private fun Int.getFutureDate(givenDate: String?): String {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val date = givenDate?.let { dateFormat.parse(it) }
-        val calendar = Calendar.getInstance()
-        if (date != null) {
-            calendar.time = date
-        }
-        calendar.add(Calendar.DATE, this)
-        return dateFormat.format(calendar.time)
-    }
-
-
 }
 
+private fun getCurrentDate(): String {
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    return dateFormat.format(Calendar.getInstance().time)
+}
+
+private fun Int.getPastDate(endDate: String): String {
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val calendar = Calendar.getInstance()
+    calendar.time = dateFormat.parse(endDate)!!
+    calendar.add(Calendar.DAY_OF_MONTH, -this)
+    return dateFormat.format(calendar.time)
+}
+
+private fun Int.getFutureDate(endDate: String): String {
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val calendar = Calendar.getInstance()
+    calendar.time = dateFormat.parse(endDate)!!
+    calendar.add(Calendar.DAY_OF_MONTH, this)
+    return dateFormat.format(calendar.time)
+}
 
 
 
