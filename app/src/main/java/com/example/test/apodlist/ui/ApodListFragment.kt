@@ -22,11 +22,16 @@ class ApodListFragment : Fragment() {
     private var _binding: ApodListBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = ApodListBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true) // Enable options menu for this fragment
         initRecyclerView()
         observeApodList()
+        apodViewModel.loadApodListData() // Load data when the fragment starts
         return binding.root
     }
 
@@ -58,7 +63,7 @@ class ApodListFragment : Fragment() {
                 true
             }
             R.id.reload_button -> {
-                apodViewModel.loadLastApodListData()
+                apodViewModel.loadApodListData()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -70,6 +75,7 @@ class ApodListFragment : Fragment() {
         _binding = null
     }
 }
+
 
 
 
